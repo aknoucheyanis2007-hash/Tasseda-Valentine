@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Valentine 💘</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: linear-gradient(135deg, #ffe6f0, #fff);
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .buttons {
+        position: relative;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: absolute;
+    }
+
+    #yesBtn {
+        background-color: #ff4d6d;
+        color: white;
+        left: -70px;
+    }
+
+    #noBtn {
+        background-color: #d3d3d3;
+        color: black;
+        left: 70px;
+    }
+
+    .heart {
+        position: absolute;
+        color: #ff4d6d;
+        font-size: 20px;
+        animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(-100vh); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1>🐻 Tasseda, veux-tu être ma Valentine ? 💖</h1>
+
+<div class="buttons">
+    <button id="yesBtn">Oui 💘</button>
+    <button id="noBtn">Non 😅</button>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+let yesScale = 1;
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    yesScale += 0.1;
+    yesBtn.style.transform = "scale(" + yesScale + ")";
+});
+
+yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = "<h1 style='font-size:40px;color:#ff4d6d;'>YAAAAAY 💕 Tasseda a dit OUI 😭💖</h1>";
+});
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
